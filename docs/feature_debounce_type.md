@@ -121,15 +121,19 @@ DEBOUNCE_TYPE = <name of algorithm>
 Where name of algorithm is one of:
 * ```sym_defer_g``` - debouncing per keyboard. On any state change, a global timer is set. When ```DEBOUNCE``` milliseconds of no changes has occurred, all input changes are pushed.
   * This is the current default algorithm. This is the highest performance algorithm with lowest memory usage, and it's also noise-resistant.
-* ```sym_eager_pr``` - debouncing per row. On any state change, response is immediate, followed by locking the row ```DEBOUNCE``` milliseconds of no further input for that row. 
+* ```sym_eager_g``` - debouncing per keyboard. On any state change, all input changes are pushed. A global timer is set. Until ```DEBOUNCE``` milliseconds has passed of no changes, it will prevent changes.
+* ```sym_eager_pr``` - debouncing per row. On any state change, response is sent immediately, followed by locking the row ```DEBOUNCE``` milliseconds of no further input for that row. 
 For use in keyboards where refreshing ```NUM_KEYS``` 8-bit counters is computationally expensive / low scan rate, and fingers usually only hit one row at a time. This could be
 appropriate for the ErgoDox models; the matrix is rotated 90°, and hence its "rows" are really columns, and each finger only hits a single "row" at a time in normal use.
 * ```sym_eager_pk``` - debouncing per key. On any state change, response is immediate, followed by ```DEBOUNCE``` milliseconds of no further input for that key
 * ```sym_defer_pk``` - debouncing per key. On any state change, a per-key timer is set. When ```DEBOUNCE``` milliseconds of no changes have occurred on that key, the key status change is pushed.
+* ```asym_eager_defer_g``` = debouncing per keyboard. On key down, response is sent immediately followed by locking the keyboard until ```DEBOUNCE``` milliseconds has passed of no changes.
+On key up, when ```DEBOUNCE``` milliseconds has passed of no changes, changes will be pushed.
+* ```asym_eager_defer_g``` = debouncing per keyboard. On key down, when ```DEBOUNCE``` milliseconds has passed of no changes, changes will be pushed.
+On key up, response is sent immediately followed by locking the keyboard until ```DEBOUNCE``` milliseconds has passed of no changes.
 
 ### A couple algorithms that could be implemented in the future:
 * ```sym_defer_pr```
-* ```sym_eager_g```
 * ```asym_eager_defer_pk```
 
 ### Use your own debouncing code
