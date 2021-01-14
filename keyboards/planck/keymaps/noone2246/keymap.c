@@ -35,22 +35,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Qwerty
  * ,-----------------------------------------------------------------------------------.
- * | Tab  |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  |  Num |
+ * | Tab  |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  | Mouse|
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * | Esc  | A @  | S _  | D $  | F #  |   G  |   H  |   J  |   K  |   L  |   ;  |  "   |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * | Shift| SWPH |   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Ctrl | GUI  | Alt  |  Bksp|  Del | Enter| Space| Space|  (   |   )  |  Fn  | Mouse|
+ * | Ctrl | GUI  | Alt  |  Bksp|  Del | Enter| Space| Space|  (   |   )  |  Fn  | Num  |
  * `-----------------------------------------------------------------------------------'
 http://www.keyboard-layout-editor.com/#/gists/59f5455b50e56b0adf1de0f64f5fcb97
 
  */
 [_QWERTY] = LAYOUT_planck_grid(
-    SUP_TAB,     KC_Q,       KC_W,       KC_E,      KC_R,      KC_T,   KC_Y,   KC_U,   KC_I,      KC_O,      KC_P,     TG(_Num),
+    SUP_TAB,     KC_Q,       KC_W,       KC_E,      KC_R,      KC_T,   KC_Y,   KC_U,   KC_I,      KC_O,      KC_P,     TO(_Mouse),
     KC_ESC,      TD(TD_AT),  TD(TD_UN),  TD(TD_DO), TD(TD_SH), KC_G,   KC_H,   KC_J,   KC_K,      KC_L,      KC_SCLN,  KC_QUOT,
     TD(TD_SHFT), SH_OS,      KC_Z,       KC_X,      KC_C,      KC_V,   KC_B,   KC_N,   KC_M,      KC_COMM,   KC_DOT,   KC_SLSH,
-    TD(TD_CTRL), TD(TD_GUI), TD(TD_ALT), KC_BSPC,   KC_DEL,    KC_ENT, KC_SPC, KC_SPC, TD(TD_LB), TD(TD_RB), OSL(_FN), TG(_Mouse)
+    TD(TD_CTRL), TD(TD_GUI), TD(TD_ALT), KC_BSPC,   KC_DEL,    KC_ENT, KC_SPC, KC_SPC, TD(TD_LB), TD(TD_RB), OSL(_FN), TO(_Num)
 ),
 
 /* Function Layer
@@ -83,9 +83,9 @@ http://www.keyboard-layout-editor.com/#/gists/59f5455b50e56b0adf1de0f64f5fcb97
  * `-----------------------------------------------------------------------------------'
  */
 [_Num] = LAYOUT_planck_grid(
-    _______, KC_GRV,     KC_HOME,   KC_UP,     KC_END,    KC_PGUP,   TD(TD_PIP), KC_7,    KC_8, KC_9,    TD(TD_ST),   TD(TD_SL),
-    LAY_CLR, TD(TD_CIR), KC_LEFT,   KC_DOWN,   KC_RIGHT,  KC_PGDN,   TD(TD_AMP), KC_5,    KC_6, KC_7,    TD(TD_PLUS), TD(TD_MNUS),
-    _______, _______,    TD(TD_LT), TD(TD_LB), TD(TD_RB), TD(TD_GT), TD(TD_EM),  KC_1,    KC_2, KC_3,    KC_PEQL,     TD(TD_MOD),
+    SUP_TAB, KC_GRV,     KC_HOME,   KC_UP,     KC_END,    KC_PGUP,   TD(TD_PIP), KC_7,    KC_8, KC_9,    TD(TD_ST),   TD(TD_SL),
+    LAY_CLR, TD(TD_CIR), KC_LEFT,   KC_DOWN,   KC_RIGHT,  KC_PGDN,   TD(TD_AMP), KC_4,    KC_5, KC_6,    TD(TD_PLUS), TD(TD_MNUS),
+    _______, _______,    TD(TD_LT), TD(TD_LB), TD(TD_RB), TD(TD_GT), TD(TD_EM),  KC_1,    KC_2, KC_3,    KC_EQL,      TD(TD_MOD),
     _______, _______,    _______,   _______,   _______,   _______,   _______,    _______, KC_0, KC_PDOT, _______,     _______
 ),
 
@@ -102,8 +102,8 @@ http://www.keyboard-layout-editor.com/#/gists/59f5455b50e56b0adf1de0f64f5fcb97
  * `-----------------------------------------------------------------------------------'
  */
 [_Mouse] = LAYOUT_planck_grid(
-    _______, DM_REC1, DM_REC2, DM_PLY1, DM_PLY2, KC_WH_U, _______,   TD(TD_QUIT), TD(TD_CLOSE), _______, C(KC_H), C(KC_Y), 
-    _______, DM_RSTP, MSE_LFT, MSE_MID, MSE_RHT, KC_WH_D, _______,   C(KC_A),     TD(TD_SAVE),  _______, C(KC_F), GOTO_L,
+    SUP_TAB, DM_REC1, DM_REC2, DM_PLY1, DM_PLY2, KC_WH_U, _______,   TD(TD_QUIT), TD(TD_CLOSE), _______, C(KC_H), C(KC_Y), 
+    LAY_CLR, DM_RSTP, MSE_LFT, MSE_MID, MSE_RHT, KC_WH_D, _______,   C(KC_A),     TD(TD_SAVE),  _______, C(KC_F), GOTO_L,
     _______, _______, KC_WH_L, _______, KC_WH_R, _______, RCS(KC_B), _______,     C(KC_Z),      C(KC_X),  C(KC_C), TD(TD_PASTE),
     _______, _______, _______, _______, _______, _______, _______,   _______,     _______,      _______,  _______, _______
 ),
@@ -121,7 +121,7 @@ http://www.keyboard-layout-editor.com/#/gists/59f5455b50e56b0adf1de0f64f5fcb97
  */
 [_Tab] = LAYOUT_planck_grid(
     _______, _______, TAB_PRE, TAB_UP,  TAB_NXT, _______, _______, TAB_PRE, TAB_UP,  TAB_NXT, _______, _______,
-    _______, _______, TAB_LFT, TAB_DWN, TAB_RHT, _______, _______, TAB_LFT, TAB_DWN, TAB_RHT, _______, _______,
+    LAY_CLR, _______, TAB_LFT, TAB_DWN, TAB_RHT, _______, _______, TAB_LFT, TAB_DWN, TAB_RHT, _______, _______,
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 )

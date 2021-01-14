@@ -1,4 +1,4 @@
-SRC += NoOne2246.c
+SRC += noone2246.c
 
 SWAP_HANDS_ENABLE = yes
 TAP_DANCE_ENABLE = yes

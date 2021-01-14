@@ -74,9 +74,9 @@ enum planck_layers {
   _QWERTY,
   _FN,
   _Num,
-  _Sym,
   _Mouse,
-  _Tab
+  _Tab,
+  _Sym
 };
 
 void Three_Cancel(qk_tap_dance_state_t *state, void *user_data);
