@@ -1,5 +1,6 @@
 #include "planck.h"
 
+/*
 #ifdef SWAP_HANDS_ENABLE
 __attribute__ ((weak))
 const keypos_t hand_swap_config[MATRIX_ROWS][MATRIX_COLS] = {
@@ -9,7 +10,7 @@ const keypos_t hand_swap_config[MATRIX_ROWS][MATRIX_COLS] = {
   {{11, 3}, {10, 3}, {9, 3}, {8, 3}, {7, 3}, {6, 3}, {5, 3}, {4, 3}, {3, 3}, {2, 3}, {1, 3}, {0, 3}},
 };
 #endif
-
+*/
 __attribute__ ((weak))
 void matrix_init_kb(void) {
 	// Turn status LED on
