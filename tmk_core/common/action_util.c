@@ -230,6 +230,11 @@ void del_mods(uint8_t mods) { real_mods &= ~mods; }
  * FIXME: needs doc
  */
 void set_mods(uint8_t mods) { real_mods = mods; }
+/** \brief toggle mods
+ *
+ * Flip the bit of the mods toggling the key.
+ */ 
+void flip_mods(uint8_t mods) { real_mods ^= mods; }
 /** \brief clear mods
  *
  * FIXME: needs doc

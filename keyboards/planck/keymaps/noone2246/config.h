@@ -1,11 +1,10 @@
 #pragma once
 
-/*#define VENDOR_ID 0x8C6
+#undef VENDOR_ID
+#undef PRODUCT_ID
+#define VENDOR_ID 0x8C6
 #define PRODUCT_ID 0x8C6
-#define DEVICE_VER 0.1
-#define MANUFACTURER NoOne2246
-#define PRODUCT Planck_v6_NoOne2246
-*/
+
 #define USB_POLLING_INTERVAL_MS 1
 
 #define QMK_KEYS_PER_SCAN 4
@@ -16,3 +15,4 @@
 #define ONESHOT_TIMEOUT 500
 #define ONESHOT_TAP_TOGGLE 2
 
+#define SUPTAB 1

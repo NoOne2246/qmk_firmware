@@ -123,6 +123,8 @@ void layer_clear(void) { layer_state_set(0); }
  */
 bool layer_state_is(uint8_t layer) { return layer_state_cmp(layer_state, layer); }
 
+bool layer_is_default(void) { return layer_state > 0; }
+
 /** \brief Layer state compare
  *
  * Used for comparing layers {mostly used for unit testing}

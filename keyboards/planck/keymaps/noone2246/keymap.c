@@ -18,15 +18,19 @@
 #include "version.h"
 #include "noone2246.h"
 
+void matrix_init_user(){
+}
+
+
 const keypos_t hand_swap_config[MATRIX_ROWS][MATRIX_COLS] = {
     {{0, 0}, {1, 4}, {2, 4}, {3, 4}, {4, 4}, {5, 4}},
     {{0, 1}, {1, 5}, {2, 5}, {3, 5}, {4, 5}, {5, 5}},
     {{0, 2}, {1, 6}, {2, 6}, {3, 6}, {4, 6}, {5, 6}},
-    {{0, 3}, {1, 3}, {2, 3}, {3, 3}, {4, 3}, {5, 3}},
+    {{0, 3}, {1, 3}, {2, 3}, {3, 3}, {4, 7}, {5, 7}},
     {{0, 4}, {1, 0}, {2, 0}, {3, 0}, {4, 0}, {5, 0}},
     {{0, 5}, {1, 1}, {2, 1}, {3, 1}, {4, 1}, {5, 1}},
     {{0, 6}, {1, 2}, {2, 2}, {3, 2}, {4, 2}, {5, 2}},
-    {{0, 7}, {1, 7}, {2, 7}, {3, 7}, {4, 7}, {5, 7}},
+    {{0, 7}, {1, 7}, {2, 7}, {3, 7}, {4, 3}, {5, 3}},
 };
 
 
@@ -35,11 +39,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Qwerty
  * ,-----------------------------------------------------------------------------------.
- * | Tab  |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  | Mouse|
+ * | Tab  | Q 1  | W 2  | E 3  | R 4  | T 5  | Y 6  | U 7  | I 8  | O 9  | P 0  | Mouse|
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Esc  | A @  | S _  | D $  | F #  |   G  |   H  |   J  |   K  |   L  |   ;  |  "   |
+ * | Esc  | A @  | S _  | D $  | F #  | G &  | H |  | J !  |   K  |  L + | ; -  | " *  |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Shift| SWPH |   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |
+ * | Shift| SWPH | Z ~  | X `  | C %  | V ^  | B \  | N [  | M ]  |   ,  | . =  |   /  |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * | Ctrl | GUI  | Alt  |  Bksp|  Del | Enter| Space| Space|  (   |   )  |  Fn  | Num  |
  * `-----------------------------------------------------------------------------------'
@@ -47,10 +51,10 @@ http://www.keyboard-layout-editor.com/#/gists/59f5455b50e56b0adf1de0f64f5fcb97
 
  */
 [_QWERTY] = LAYOUT_planck_grid(
-    SUP_TAB,     KC_Q,       KC_W,       KC_E,      KC_R,      KC_T,   KC_Y,   KC_U,   KC_I,      KC_O,      KC_P,     TO(_Mouse),
-    KC_ESC,      TD(TD_AT),  TD(TD_UN),  TD(TD_DO), TD(TD_SH), KC_G,   KC_H,   KC_J,   KC_K,      KC_L,      KC_SCLN,  KC_QUOT,
-    TD(TD_SHFT), SH_OS,      KC_Z,       KC_X,      KC_C,      KC_V,   KC_B,   KC_N,   KC_M,      KC_COMM,   KC_DOT,   KC_SLSH,
-    TD(TD_CTRL), TD(TD_GUI), TD(TD_ALT), KC_BSPC,   KC_DEL,    KC_ENT, KC_SPC, KC_SPC, TD(TD_LB), TD(TD_RB), OSL(_FN), TO(_Num)
+    SUP_TAB,       TD(TD_Q1), TD(TD_W2),     TD(TD_E3), TD(TD_R4), TD(TD_T5), TD(TD_Y6),   TD(TD_U7), TD(TD_I8), TD(TD_O9), TD(TD_P0), TO(_Mouse),
+    LAY_CLR,       TD(TD_AT), TD(TD_UN),     TD(TD_DO), TD(TD_SH), KC_G,   KC_H,   KC_J,   KC_K,      KC_L,      KC_SCLN,  KC_QUOT,
+    OSM(MOD_LSFT), SH_OS,     KC_Z,          KC_X,      KC_C,      KC_V,   TD(TD_BS),   KC_N,   KC_M,      KC_COMM,   KC_DOT,   KC_SLSH,
+    OSM(MOD_LCTL), OS_GUI,    OSM(MOD_LALT), KC_BSPC,   KC_DEL,    KC_ENT, KC_SPC, KC_SPC, TD(TD_LB), TD(TD_RB), LAY_FNC,  TO(_Num)
 ),
 
 /* Function Layer
@@ -77,7 +81,7 @@ http://www.keyboard-layout-editor.com/#/gists/59f5455b50e56b0adf1de0f64f5fcb97
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |  CLR |   ^  | Lft  |  Dwn | Rght | PgUp |   &  |   4  |   5  |   6  |   +  |   -  |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |   <  |  (   |   )  |   >  |   !  |   1  |   2  |   3  |   =  |   %  |
+ * |      |      |  (   |   )  |   <  |   >  |   !  |   1  |   2  |   3  |   =  |   %  |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |      |      |      |   0  |   .  |      |      |
  * `-----------------------------------------------------------------------------------'
@@ -85,7 +89,7 @@ http://www.keyboard-layout-editor.com/#/gists/59f5455b50e56b0adf1de0f64f5fcb97
 [_Num] = LAYOUT_planck_grid(
     SUP_TAB, KC_GRV,     KC_HOME,   KC_UP,     KC_END,    KC_PGUP,   TD(TD_PIP), KC_7,    KC_8, KC_9,    TD(TD_ST),   TD(TD_SL),
     LAY_CLR, TD(TD_CIR), KC_LEFT,   KC_DOWN,   KC_RIGHT,  KC_PGDN,   TD(TD_AMP), KC_4,    KC_5, KC_6,    TD(TD_PLUS), TD(TD_MNUS),
-    _______, _______,    TD(TD_LT), TD(TD_LB), TD(TD_RB), TD(TD_GT), TD(TD_EM),  KC_1,    KC_2, KC_3,    KC_EQL,      TD(TD_MOD),
+    _______, _______,    TD(TD_LB), TD(TD_RB), TD(TD_LT), TD(TD_GT), TD(TD_EM),  KC_1,    KC_2, KC_3,    KC_EQL,      TD(TD_MOD),
     _______, _______,    _______,   _______,   _______,   _______,   _______,    _______, KC_0, KC_PDOT, _______,     _______
 ),
 
@@ -102,10 +106,10 @@ http://www.keyboard-layout-editor.com/#/gists/59f5455b50e56b0adf1de0f64f5fcb97
  * `-----------------------------------------------------------------------------------'
  */
 [_Mouse] = LAYOUT_planck_grid(
-    SUP_TAB, DM_REC1, DM_REC2, DM_PLY1, DM_PLY2, KC_WH_U, _______,   TD(TD_QUIT), TD(TD_CLOSE), _______, C(KC_H), C(KC_Y), 
-    LAY_CLR, DM_RSTP, MSE_LFT, MSE_MID, MSE_RHT, KC_WH_D, _______,   C(KC_A),     TD(TD_SAVE),  _______, C(KC_F), GOTO_L,
-    _______, _______, KC_WH_L, _______, KC_WH_R, _______, RCS(KC_B), _______,     C(KC_Z),      C(KC_X),  C(KC_C), TD(TD_PASTE),
-    _______, _______, _______, _______, _______, _______, _______,   _______,     _______,      _______,  _______, _______
+    SUP_TAB, _______, _______, _______, _______, KC_WH_U, _______,   TD(TD_QUIT), TD(TD_CLOSE), _______, C(KC_H), C(KC_Y), 
+    LAY_CLR, _______, KC_BTN1, KC_BTN3, KC_BTN2, KC_WH_D, _______,   C(KC_A),     TD(TD_SAVE),  _______, C(KC_F), GOTO_L,
+    TG_SHFT, _______, KC_WH_L, _______, KC_WH_R, _______, RCS(KC_B), _______,     C(KC_Z),      C(KC_X), C(KC_C), TD(TD_PASTE),
+    TG_CTRL, KC_LGUI, TG_ALT,  _______, _______, _______, _______,   _______,     _______,      _______,  _______, _______
 ),
 
 /* Tab
@@ -120,12 +124,29 @@ http://www.keyboard-layout-editor.com/#/gists/59f5455b50e56b0adf1de0f64f5fcb97
  * `-----------------------------------------------------------------------------------'
  */
 [_Tab] = LAYOUT_planck_grid(
-    _______, _______, TAB_PRE, TAB_UP,  TAB_NXT, _______, _______, TAB_PRE, TAB_UP,  TAB_NXT, _______, _______,
+    TAB_NXT, _______, TAB_PRE, TAB_UP,  TAB_NXT, _______, _______, TAB_PRE, TAB_UP,  TAB_NXT, _______, _______,
     LAY_CLR, _______, TAB_LFT, TAB_DWN, TAB_RHT, _______, _______, TAB_LFT, TAB_DWN, TAB_RHT, _______, _______,
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
-)
+),
 
+/* Symbol
+ * ,-----------------------------------------------------------------------------------.
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * `-----------------------------------------------------------------------------------'
+ */
+[_Media] = LAYOUT_planck_grid(
+    _______, KC_BRIU, _______, _______, _______, KC_VOLU, _______, _______, _______, _______, NK_OFF, RESET,
+    _______, KC_BRID, KC_MRWD, KC_MPLY, KC_MFFD, KC_VOLD, _______, _______, _______, _______, NK_ON,   _______,
+    _______, _______, _______, _______, _______, KC_MUTE, _______, _______, _______, _______, _______, _______,
+    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+),
 
 /* Symbol
  * ,-----------------------------------------------------------------------------------.

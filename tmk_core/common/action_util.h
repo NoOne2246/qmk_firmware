@@ -40,6 +40,7 @@ uint8_t get_mods(void);
 void    add_mods(uint8_t mods);
 void    del_mods(uint8_t mods);
 void    set_mods(uint8_t mods);
+void    flip_mods(uint8_t mods);
 void    clear_mods(void);
 
 /* weak modifier */

@@ -972,6 +972,13 @@ void unregister_mods(uint8_t mods) {
     }
 }
 
+void toggle_mods(uint8_t mods){
+    if (mods){
+        flip_mods(mods);
+        send_keyboard_report();
+    }
+}
+
 /** \brief Adds the given weak modifiers and sends a keyboard report immediately.
  *
  * \param mods A bitfield of modifiers to register.
