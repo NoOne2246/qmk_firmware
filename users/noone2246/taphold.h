@@ -19,6 +19,12 @@ enum
 	TD_SH,
 	TD_UN,
     TD_BS,
+    TD_TI,
+    TD_BQ,
+    TD_PC,
+    TD_KA,
+    TD_AM,
+    TD_PI,
     TD_END_TAP_HOLD
 };
 
@@ -40,5 +46,11 @@ void dance_DO(qk_tap_dance_state_t *state, void *user_data);
 void dance_UN(qk_tap_dance_state_t *state, void *user_data);
 void dance_SH(qk_tap_dance_state_t *state, void *user_data);
 void dance_BS(qk_tap_dance_state_t *state, void *user_data);
+void dance_TI(qk_tap_dance_state_t *state, void *user_data);
+void dance_BQ(qk_tap_dance_state_t *state, void *user_data);
+void dance_PC(qk_tap_dance_state_t *state, void *user_data);
+void dance_KA(qk_tap_dance_state_t *state, void *user_data);
+void dance_AM(qk_tap_dance_state_t *state, void *user_data);
+void dance_PI(qk_tap_dance_state_t *state, void *user_data);
 
 void presskey(qk_tap_dance_state_t *state, uint16_t keyhold, uint16_t keytap);

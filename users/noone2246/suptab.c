@@ -1,6 +1,5 @@
 #include "suptab.h"
 
-
 int Tab_Dance = 0;
 uint16_t Tab_timer = 0;
 
@@ -34,7 +33,7 @@ void handle_tab(uint16_t keycode, bool pressed){
                 break;
         }
     }
-        
+    
     if (keycode == SUP_TAB){
         Tab_timer = timer_read();
         layer_on(_Tab);

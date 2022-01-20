@@ -4,15 +4,16 @@
 
 enum {
   _QWERTY,
-  _FN,
   _Num,
   _Mouse,
+  _Extra,
   
   #ifdef SUPTAB
   _Tab,
   #endif
   
   _Sym,
+  _FN,
   _Media
 };
 

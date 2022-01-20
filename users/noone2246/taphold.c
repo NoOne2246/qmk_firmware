@@ -43,7 +43,25 @@ void dance_SH(qk_tap_dance_state_t *state, void *user_data) {
     presskey(state, KC_HASH, KC_F);
 }
 void dance_BS(qk_tap_dance_state_t *state, void *user_data) {
-    presskey(state, KC_BSLS, KC_G);
+    presskey(state, KC_BSLS, KC_B);
+}
+void dance_TI(qk_tap_dance_state_t *state, void *user_data) {
+    presskey(state, KC_TILD, KC_Z);
+}
+void dance_BQ(qk_tap_dance_state_t *state, void *user_data) {
+    presskey(state, KC_GRV, KC_X);
+}
+void dance_PC(qk_tap_dance_state_t *state, void *user_data) {
+    presskey(state, KC_PERC, KC_C);
+}
+void dance_KA(qk_tap_dance_state_t *state, void *user_data) {
+    presskey(state, KC_CIRC, KC_V);
+}
+void dance_AM(qk_tap_dance_state_t *state, void *user_data) {
+    presskey(state, KC_AMPR, KC_G);
+}
+void dance_PI(qk_tap_dance_state_t *state, void *user_data) {
+    presskey(state, KC_PIPE, KC_H);
 }
 void presskey(qk_tap_dance_state_t *state, uint16_t keyhold, uint16_t keytap){
     bool press = (state->pressed);

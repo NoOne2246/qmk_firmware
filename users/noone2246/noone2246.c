@@ -11,6 +11,7 @@
 
 uint8_t Mouse_Mod = 0;
 uint16_t Gui_timer = 0;
+uint16_t FN_timer = 0;
 
 void Three_Cancel(qk_tap_dance_state_t *state, void *user_data) {
     if (state->count >= 3) {
@@ -228,11 +229,6 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 	[TD_CLOSE] = ACTION_TAP_DANCE_DOUBLE(C(KC_W), C(KC_F4)),
 	[TD_QUIT] = ACTION_TAP_DANCE_DOUBLE(C(KC_Q), A(KC_F4)),
 	[TD_NLAY] = ACTION_TAP_DANCE_FN(dance_NumLay),
-	[TD_AT] = ACTION_TAP_DANCE_FN(dance_AT),
-	[TD_DO] = ACTION_TAP_DANCE_FN(dance_DO),
-	[TD_UN] = ACTION_TAP_DANCE_FN(dance_UN),
-	[TD_SH] = ACTION_TAP_DANCE_FN(dance_SH),
-    [TD_BS] = ACTION_TAP_DANCE_FN(dance_BS),
 	[TD_PLUS] = ACTION_TAP_DANCE_FN_ADVANCED(Three_Cancel, pl_finished, pl_reset),
 	[TD_MNUS] = ACTION_TAP_DANCE_FN_ADVANCED(Three_Cancel, mn_finished, mn_reset),
 	[TD_LT] = ACTION_TAP_DANCE_FN_ADVANCED(Three_Cancel, lt_finished, lt_reset),
@@ -250,7 +246,6 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 	[TD_ALT] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, alt_finished, alt_reset),
 	[TD_GUI] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, gui_finished, gui_reset),
 	[TD_CTRL] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, ctrl_finished, ctrl_reset),
-	[TD_AT] = ACTION_TAP_DANCE_FN(dance_AT),
     [TD_Q1] = ACTION_TAP_DANCE_FN(dance_Q1),
     [TD_W2] = ACTION_TAP_DANCE_FN(dance_W2),
     [TD_E3] = ACTION_TAP_DANCE_FN(dance_E3),
@@ -260,7 +255,18 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     [TD_U7] = ACTION_TAP_DANCE_FN(dance_U7),
     [TD_I8] = ACTION_TAP_DANCE_FN(dance_I8),
     [TD_O9] = ACTION_TAP_DANCE_FN(dance_O9),
-    [TD_P0] = ACTION_TAP_DANCE_FN(dance_P0)
+    [TD_P0] = ACTION_TAP_DANCE_FN(dance_P0),
+	[TD_AT] = ACTION_TAP_DANCE_FN(dance_AT),
+	[TD_DO] = ACTION_TAP_DANCE_FN(dance_DO),
+	[TD_UN] = ACTION_TAP_DANCE_FN(dance_UN),
+	[TD_SH] = ACTION_TAP_DANCE_FN(dance_SH),
+    [TD_BS] = ACTION_TAP_DANCE_FN(dance_BS),
+    [TD_TI] = ACTION_TAP_DANCE_FN(dance_TI),
+    [TD_BQ] = ACTION_TAP_DANCE_FN(dance_BQ),
+    [TD_PC] = ACTION_TAP_DANCE_FN(dance_PC),
+    [TD_KA] = ACTION_TAP_DANCE_FN(dance_KA),
+    [TD_AM] = ACTION_TAP_DANCE_FN(dance_AM),
+    [TD_PI] = ACTION_TAP_DANCE_FN(dance_PI),
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -353,8 +359,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 layer_on(_Media);
             }else{
                 layer_off(_Media);
+                layer_on(_FN);
+                FN_timer = timer_read();
                 //set_oneshot_layer(_FN, ONESHOT_START);
                 //clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
+            }
+            break;
+        case KC_F1 ... KC_F12:
+        case KC_F13 ... KC_F24:
+            if (!(record -> event.pressed)){
+                layer_off(_FN);
             }
             break;
     }
@@ -368,9 +382,15 @@ void matrix_scan_user(void) {     // The very important timer.
 check_tab();
 #endif
     if (Gui_timer > 0){
-        if(timer_elapsed(Gui_timer)>TAPPING_TERM){
+        if(timer_elapsed(Gui_timer)>2*TAPPING_TERM){
             tap_code16(KC_LGUI);
             Gui_timer = 0;
+        }
+    }
+    if(FN_timer > 0){
+        if (timer_elapsed(FN_timer)>5*TAPPING_TERM){
+            layer_off(_FN);
+            FN_timer = 0;
         }
     }
 }
