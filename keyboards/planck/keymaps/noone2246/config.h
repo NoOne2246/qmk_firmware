@@ -1,0 +1,18 @@
+#pragma once
+
+#undef VENDOR_ID
+#undef PRODUCT_ID
+#define VENDOR_ID 0x8C6
+#define PRODUCT_ID 0x8C6
+
+#define USB_POLLING_INTERVAL_MS 50
+
+#define QMK_KEYS_PER_SCAN 4
+#define TAP_CODE_DELAY 5
+
+#define TAPPING_TERM 200
+#define TAPPING_TOGGLE 2
+#define ONESHOT_TIMEOUT 500
+#define ONESHOT_TAP_TOGGLE 2
+
+#define SUPTAB 1
