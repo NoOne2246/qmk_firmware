@@ -67,7 +67,11 @@ This is a C header file that is one of the first things included, and will persi
 * `#define MATRIX_UNSELECT_DRIVE_HIGH`
   * On un-select of matrix pins, rather than setting pins to input-high, sets them to output-high.
 * `#define DIODE_DIRECTION COL2ROW`
-  * COL2ROW or ROW2COL - how your matrix is configured. COL2ROW means the black mark on your diode is facing to the rows, and between the switch and the rows.
+  * `COL2ROW`, `ROW2COL`, `EITHER` or `DUPLEX_SCAN` - how your matrix is configured.
+	* `COL2ROW` means the black mark on your diode is facing to the rows or facing away from the cols. This is considered the preferred choice in QMK when you are planning a new design.
+ * `ROW2COL` means the opposite. The black mark on your diode is facing to the cols or facing away from the rows.
+ * `EITHER` is useful as compensation when a matrix has diodes messed up with their directions. This works properly even when arbitrary number of diodes are soldered wrong way. That means this setting is compatible with `COL2ROW` matrix and `ROW2COL` matrix at the same time. Please note that there is a chance of ghosting depending on the type of diodes used and configuration.
+  * `DUPLEX_SCAN` is a new strategy to reduce number of pins required to drive a matrix. Compared to a conventional matrix twice the number of keys can be handled. See the section below on using `DUPLEX_SCAN`.
 * `#define DIRECT_PINS { { F1, F0, B0, C7 }, { F4, F5, F6, F7 } }`
   * pins mapped to rows and columns, from left to right. Defines a matrix where each switch is connected to a separate pin and ground.
 * `#define AUDIO_VOICES`
