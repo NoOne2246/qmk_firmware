@@ -4,6 +4,8 @@ DEFAULT_FOLDER = keyball/keyball44pi
 # Optical sensor driver for trackball.
 POINTING_DEVICE_DRIVER = pmw3360
 
+SERIAL_DRIVER = vendor
+
 # Enabled only one of RGBLIGHT and RGB_MATRIX if necessary.
 RGBLIGHT_ENABLE = no        # Enable RGBLIGHT
 RGB_MATRIX_DRIVER = ws2812

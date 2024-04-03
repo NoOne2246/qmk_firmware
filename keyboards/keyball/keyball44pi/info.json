@@ -51,7 +51,6 @@
     },
     "split": {
         "enabled": true,
-        "soft_serial_pin": "GP1",
         "handedness": {
             "matrix_grid": [ "GP26", "GP4" ] 
         },
