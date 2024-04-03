@@ -2,6 +2,15 @@
 
 #define MATRIX_MASKED
 
+#define I2C_DRIVER I2CD1
+#define I2C1_SDA_PIN GP2
+#define I2C1_SCL_PIN GP3
+
+#define SPI_DRIVER SPID0
+#define SPI_SCK_PIN GP18
+#define SPI_MISO_PIN GP20
+#define SPI_MOSI_PIN GP19
+
 #define PMW33XX_CS_PIN GP10
 #define PMW33XX_CPI 500
 #define PMW33XX_CPI_SCR 100

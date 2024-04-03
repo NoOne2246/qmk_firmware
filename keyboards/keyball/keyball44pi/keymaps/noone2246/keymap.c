@@ -116,27 +116,27 @@ tap_dance_action_t tap_dance_actions[] = {
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT_right_ball(
-    KC_TAB        , KC_Q          , KC_W     , KC_E     , KC_R     , KC_T     ,                                        KC_Y     , KC_U     , KC_I     , KC_O     , KC_P     , TO(_FFXIV)  ,
-    KC_ESC        , TD(TD_AA)     , TD(TD_SU), TD(TD_DD), TD(TD_FS), TD(TD_GB),                                        KC_H     , KC_J     , KC_K     , KC_L     , KC_SCLN  , KC_QUOT  ,
-    OSM(MOD_LSFT) , OSM(MOD_LCTL) , KC_Z     , KC_X     , KC_C     , KC_V     ,                                        KC_B     , KC_N     , KC_M     , KC_COMM  , KC_DOT   , KC_SLSH  , 
+    KC_TAB        , KC_Q          , KC_W     , KC_E     , KC_R     , KC_T     ,                                        KC_Y     , KC_U     , KC_I     , KC_O     , KC_P     , TO(_FFXIV) ,
+    KC_ESC        , TD(TD_AA)     , TD(TD_SU), TD(TD_DD), TD(TD_FS), TD(TD_GB),                                        KC_H     , KC_J     , KC_K     , KC_L     , KC_SCLN  , KC_QUOT    ,
+    OSM(MOD_LSFT) , OSM(MOD_LCTL) , KC_Z     , KC_X     , KC_C     , KC_V     ,                                        KC_B     , KC_N     , KC_M     , KC_COMM  , KC_DOT   , KC_SLSH    , 
                     KC_LGUI , OSM(MOD_LALT),KC_BSPC, LT(_NUMPAD, KC_DEL), KC_ENT   ,                  KC_ENT  , KC_SPC    ,                                        MO(_FUNCTION)
   ),
   [_NUMPAD] = LAYOUT_right_ball(
-    _______       , KC_GRV  , KC_HOME  , KC_UP    , KC_END   , KC_PGUP  ,                                        KC_PIPE , KC_P7     , KC_P8     , KC_P9     , KC_PAST  , KC_PSLS  ,
+    _______       , KC_GRV   , KC_HOME  , KC_UP   , KC_END   , KC_PGUP  ,                                        KC_PIPE , KC_P7     , KC_P8     , KC_P9     , KC_PAST  , KC_PSLS  ,
     _______       , KC_CIRC  , KC_LEFT  , KC_DOWN , KC_RGHT  , KC_PGDN  ,                                        KC_AMPR , KC_P4     , KC_P5     , KC_P6     , KC_PPLS  , KC_PMNS  , 
     _______       , _______  , KC_LPRN  , KC_RPRN , KC_LBRC  , KC_LBRC  ,                                        KC_EXLM , KC_P1     , KC_P2     , KC_P3     , KC_EQL   , KC_PERC  , 
                          _______  , _______ , _______  , _______   , _______   ,                 KC_SPC ,    KC_P0  ,                        KC_PDOT
   ),
   [_FUNCTION] = LAYOUT_right_ball(
-    KC_NUM        , _______  , KC_F1    , KC_F2   , KC_F3    , KC_F4   ,                                         KC_F13  , KC_F14  , KC_F15  , KC_F16  , _______  , _______  ,
-    KC_SCRL       , _______  , KC_F5    , KC_F6   , KC_F7    , KC_F8   ,                                         KC_F17  , KC_F18  , KC_F19  , KC_F20  , _______  , _______  , 
-    KC_CAPS       , _______  ,  KC_F9   , KC_F10  , KC_F11   , KC_F12  ,                                         KC_F21  , KC_F22  , KC_F23  , KC_F24  , _______  , _______  , 
-                        _______  , _______  , _______  , _______   , _______   ,                  _______  ,  _______  ,                             _______
+    KC_NUM        , KC_VOLU  , KC_F1    , KC_F2   , KC_F3    , KC_F4   ,                                         KC_F13  , KC_F14  , KC_F15  , KC_F16  , _______  , QK_BOOT  ,
+    KC_SCRL       , KC_MUTE  , KC_F5    , KC_F6   , KC_F7    , KC_F8   ,                                         KC_F17  , KC_F18  , KC_F19  , KC_F20  , _______  , QK_RBT  , 
+    KC_CAPS       , KC_VOLD  ,  KC_F9   , KC_F10  , KC_F11   , KC_F12  ,                                         KC_F21  , KC_F22  , KC_F23  , KC_F24  , _______  , _______  , 
+                        _______  , _______  , KC_MPRV  ,KC_MPLY,KC_MNXT,                  KC_BRIU  ,  KC_BRID  ,                             _______
   ),
   [_MOUSE] = LAYOUT_right_ball(
-    _______       , _______  , _______  , _______  , _______     , _______     ,                                        _______     , _______     , KC_WH_U     , _______     , _______ , _______  ,
-    _______       , C(KC_A)  , C(KC_S)  , _______  , C(KC_F)     , _______     ,                                        _______     , KC_BTN1     , KC_BTN3     , KC_BTN2     , _______  , _______  ,
-    OSM(MOD_LSFT) , _______  , C(KC_Z) , C(KC_X)  , C(KC_C)     , C(KC_V)     ,                                          _______     , KC_WH_L     , KC_WH_D     , KC_WH_R     , _______   , _______  , 
+    _______       , _______  , _______  , _______  , _______   , _______  ,                                        _______     , _______     , KC_WH_U     , _______     , _______ , _______  ,
+    _______       , C(KC_A)  , C(KC_S)  , _______  , C(KC_F)   , _______  ,                                        _______     , KC_BTN1     , KC_BTN3     , KC_BTN2     , _______  , _______  ,
+    OSM(MOD_LSFT) , _______  , C(KC_Z)  , C(KC_X)  , C(KC_C)   , C(KC_V)  ,                                        _______     , KC_WH_L     , KC_WH_D     , KC_WH_R     , _______   , _______  , 
                     _______  , _______  , _______  ,       _______   , KCC_SCROLL ,                  _______  ,  _______  ,                             _______
   ),
   [_FFXIV] = LAYOUT_right_ball(//FFXIV
@@ -241,7 +241,7 @@ static inline int8_t clip2int8(int16_t v) {
    
     static uint32_t last_exec = 0;
 
-    if(abs(mouse_report.x) + abs(mouse_report.y)>10){
+    if(abs(mouse_report.x) + abs(mouse_report.y) > 0){
         held_report = mouse_report;
         last_exec = timer_read32();
         held_report.buttons = MOUSE_BTN2;
