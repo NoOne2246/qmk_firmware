@@ -66,7 +66,7 @@ __attribute__((weak)) void oledkit_render_slave_user(void) {
 }
 
 __attribute__((weak)) bool oled_task_user(void) {
-    if (is_keyboard_master()){
+    if (!is_keyboard_left()){
         oledkit_render_master_user();
     }else{
         oledkit_render_slave_user();
