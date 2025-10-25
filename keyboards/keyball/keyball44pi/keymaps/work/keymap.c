@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "quantum.h"
 
 #ifdef OLED_ENABLE
-#    include "keyball44pi/keymaps/noone2246/oledkit.h"
+#    include "keyball44pi/keymaps/work/oledkit.h"
 #endif
 
 enum custom_keycodes{
@@ -37,8 +37,7 @@ enum custom_layers {
     _QWERTY,
     _NUMPAD,
     _FUNCTION,
-    _MOUSE,
-    _FFXIV
+    _MOUSE
 };
 
 #ifdef TAP_DANCE_ENABLE
@@ -116,7 +115,7 @@ tap_dance_action_t tap_dance_actions[] = {
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT_right_ball(
-    KC_TAB        , KC_Q          , KC_W     , KC_E     , KC_R     , KC_T     ,                                        KC_Y     , KC_U     , KC_I     , KC_O     , KC_P     , TO(_FFXIV) ,
+    KC_TAB        , KC_Q          , KC_W     , KC_E     , KC_R     , KC_T     ,                                        KC_Y     , KC_U     , KC_I     , KC_O     , KC_P     , MO(_FUNCTION),
     KC_ESC        , TD(TD_AA)     , TD(TD_SU), TD(TD_DD), TD(TD_FS), TD(TD_GB),                                        KC_H     , KC_J     , KC_K     , KC_L     , KC_SCLN  , KC_QUOT    ,
     OSM(MOD_LSFT) , OSM(MOD_LCTL) , KC_Z     , KC_X     , KC_C     , KC_V     ,                                        KC_B     , KC_N     , KC_M     , KC_COMM  , KC_DOT   , KC_SLSH    , 
                     KC_LGUI , OSM(MOD_LALT),KC_BSPC, LT(_NUMPAD, KC_DEL), KC_ENT   ,                  KC_ENT  , KC_SPC    ,                                        MO(_FUNCTION)
@@ -128,9 +127,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                          _______  , _______ , _______  , _______   , _______   ,                 KC_SPC ,    KC_P0  ,                        KC_PDOT
   ),
   [_FUNCTION] = LAYOUT_right_ball(
-    KC_NUM        , KC_VOLU  , KC_F1    , KC_F2   , KC_F3    , KC_F4   ,                                         KC_F13  , KC_F14  , KC_F15  , KC_F16  , _______  , QK_BOOT  ,
+    KC_NUM        , KC_VOLU  , KC_F1    , KC_F2   , KC_F3    , KC_F4   ,                                         KC_F13  , KC_F14  , KC_F15  , KC_F16  , _______  , _______,
     KC_SCRL       , KC_MUTE  , KC_F5    , KC_F6   , KC_F7    , KC_F8   ,                                         KC_F17  , KC_F18  , KC_F19  , KC_F20  , _______  , QK_RBT  , 
-    KC_CAPS       , KC_VOLD  ,  KC_F9   , KC_F10  , KC_F11   , KC_F12  ,                                         KC_F21  , KC_F22  , KC_F23  , KC_F24  , _______  , _______  , 
+    KC_CAPS       , KC_VOLD  ,  KC_F9   , KC_F10  , KC_F11   , KC_F12  ,                                         KC_F21  , KC_F22  , KC_F23  , KC_F24  , _______  , QK_BOOT  , 
                         _______  , _______  , KC_MPRV  ,KC_MPLY,KC_MNXT,                  KC_BRIU  ,  KC_BRID  ,                             _______
   ),
   [_MOUSE] = LAYOUT_right_ball(
@@ -138,27 +137,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______       , C(KC_A)  , C(KC_S)  , _______  , C(KC_F)   , _______  ,                                        _______     , KC_BTN1     , KC_BTN3     , KC_BTN2     , _______  , _______  ,
     OSM(MOD_LSFT) , _______  , C(KC_Z)  , C(KC_X)  , C(KC_C)   , C(KC_V)  ,                                        _______     , KC_WH_L     , KC_WH_D     , KC_WH_R     , _______   , _______  , 
                     _______  , _______  , _______  ,       _______   , KCC_SCROLL ,                  _______  ,  _______  ,                             _______
-  ),
-  [_FFXIV] = LAYOUT_right_ball(//FFXIV
-    KC_TAB        , KC_F5  , KC_Q     , KC_W   , KC_E    , KC_F8        ,                                     KC_LT , KC_1  , KC_2 , KC_3    , KC_4     , TO(_QWERTY),
-    KC_ESC        , KC_F6  , KC_A     , KC_S   , KC_D    , KC_F9        ,                                     KC_GT , KC_5  , KC_6 , KC_7    , KC_8     , KC_LBRC  ,
-    KC_P0         , KC_F7  , KC_F2    , KC_F1  , KC_F12  , KC_F10       ,                                     XXXXXXX , KC_9  , KC_0 , KC_MINS , KC_EQL   , KC_RBRC , 
-                             KC_LT    , KC_GT  , KC_LSFT , KC_LEFT_CTRL , KC_SPC ,                  KC_ENT  , KC_SPC  ,                          KCC_MOUSE
-  ),
+  )
 };
 
 // clang-format off
 static bool scrolling_mode = false;
 static bool joystick_mode = false;
-static bool FFXIV_CHAT = false;
 report_mouse_t held_report = {};
 
-#ifdef JOYSTICK_ENABLE
-joystick_config_t joystick_axes[JOYSTICK_AXIS_COUNT] = {
-    [0] = JOYSTICK_AXIS_VIRTUAL,
-    [1] = JOYSTICK_AXIS_VIRTUAL
-};
-#endif
 
 void pointing_device_init_user(void) {
     set_auto_mouse_enable(true);         // always required before the auto mouse feature will work
@@ -176,17 +162,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             pointing_device_set_cpi(500);
         }
         break;
-    case KC_ENT:
-        if(record->event.pressed) {
-            if(layer_state_is(_FFXIV)){
-                FFXIV_CHAT = true;
-                layer_clear();
-            }else if(FFXIV_CHAT){
-                FFXIV_CHAT = false;
-                layer_on(_FFXIV);
-            }
-        }
-        break;
     case KCC_MOUSE:
         if (record->event.pressed) {
             joystick_mode = false;
@@ -194,32 +169,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             joystick_mode = true;
         }
         break;
-#ifdef JOYSTICK_ENABLE
-    case JS_UP:
-        joystick_set_axis(1, record->event.pressed ? 127 : 0);
-        return false;
-    case JS_DWN:
-        joystick_set_axis(1, record->event.pressed ? -127 : 0);
-        return false;
-    case JS_LFT:
-        joystick_set_axis(0, record->event.pressed ? -127 : 0);
-        return false;
-    case JS_RHT:
-        joystick_set_axis(0, record->event.pressed ? 127 : 0);
-        return false; 
-#endif
     }
     return true;
 };
 
 layer_state_t layer_state_set_user(layer_state_t state) {
     switch (get_highest_layer(remove_auto_mouse_layer(state, true))) {
-    case _FFXIV:
-        scrolling_mode = false;
-        joystick_mode = true;
-        state = remove_auto_mouse_layer(state, false);
-        set_auto_mouse_enable(false); 
-        break;
     case _MOUSE:
         joystick_mode = false;
     default: 
@@ -267,14 +222,7 @@ static inline int8_t clip2int8(int16_t v) {
         mouse_report.y = 0;
     }
     if (joystick_mode) {
-#ifdef JOYSTICK_ENABLE
-        joystick_set_axis(0, clip2int8(held_report.x * 10));
-        joystick_set_axis(1, clip2int8(held_report.y * 10));
-        mouse_report.x = 0;
-        mouse_report.y = 0;
-#else
         mouse_report.buttons = held_report.buttons;
-#endif
     }
     return mouse_report;
 }

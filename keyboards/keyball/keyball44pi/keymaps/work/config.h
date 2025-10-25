@@ -44,15 +44,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define ONESHOT_TIMEOUT 5000
 #define ONESHOT_TAP_TOGGLE 2
 
-#ifdef JOYSTICK_ENABLE
-#   define JOYSTICK_BUTTON_COUNT 1
-#   define JOYSTICK_AXIS_COUNT 2
-#   define JOYSTICK_AXIS_RESOLUTION 8
-#endif
-
 
 #ifdef OLED_ENABLE
-#   define OLED_FONT_H "keyboards/keyball/keyball44pi/keymaps/noone2246/glcdfont.c"
+#   define OLED_FONT_H "keyboards/keyball/keyball44pi/keymaps/work/glcdfont.c"
 #   define OLED_FONT_START 32
 #   define OLED_FONT_END 90
 #endif
