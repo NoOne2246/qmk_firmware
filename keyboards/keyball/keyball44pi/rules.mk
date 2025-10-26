@@ -1,6 +1,4 @@
 
-DEFAULT_FOLDER = keyball/keyball44pi
-
 # Optical sensor driver for trackball.
 POINTING_DEVICE_DRIVER = pmw3360
 
