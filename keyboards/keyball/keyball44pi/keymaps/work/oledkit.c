@@ -51,7 +51,6 @@ __attribute__((weak)) void keyball_oled_render_layerinfo(void) {
     //       LQWE
     //
     oled_write_P(PSTR("LAY: "), false);
-    oled_write_P(layer_state_is(4)?PSTR(" #XIV"):PSTR(" #   "),false);
     oled_write_P(layer_state_is(3)?PSTR(" #MSE"):PSTR(" #   "),false);
     oled_write_P(layer_state_is(2)?PSTR(" #FNC"):PSTR(" #   "),false);
     oled_write_P(layer_state_is(1)?PSTR(" #NUM"):PSTR(" #   "),false);
